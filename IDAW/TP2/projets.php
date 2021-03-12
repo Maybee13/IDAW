@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SitePro</title>
-    <link href="styles.css" rel="stylesheet" />
-</head>
-<body>
+<?php
+    require_once('template_header.php');
+?>
     <div class="title">
         <h1>MAYA DIDON</h1>
     </div>
     <div class="main-flex-container">
-        <nav class="menu container">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="cv.html">CV</a></li>
-                <li><a id="currentpage" href="projets.html">Projets</a></li>
-            </ul>
-        </nav>
+        <?php
+            require_once('template_menu.php');
+            renderMenuToHTML('projets');
+        ?>
         <section>
             <div class="container subtitle">
                 <h2>Stage - Air Liquide (Juin - Août 2020)</h2>
@@ -40,5 +30,6 @@
             </ul>
         </section>
     </div>
-</body>
-</html>
+<?php
+    require_once('template_footer.php');
+?>
