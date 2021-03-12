@@ -13,7 +13,7 @@
             foreach($mymenu as $pageId => $pageParameters){
                 echo "<li><a ";
                 if($pageId == $currentPageId){
-                    echo "class='currentpage' ";
+                    echo "id=\"pageactu\" ";
                 }
                 echo "href='$pageId.php'><span>$pageParameters[0]</span></a></li>\n";
             }
