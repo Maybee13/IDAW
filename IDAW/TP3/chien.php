@@ -16,6 +16,9 @@
                 <li><a href='chien.php'>Un Chien</a></li>
             <ul>
         </nav>
+        <form id="logout" action="disconnected.php" method="POST">
+            <input type="submit" value="Déconnexion"/>
+        </form>
         <body class='container'>
             <div class='head'>
                 <h1>Bienvenue <?php echo $_SESSION['login']?> !</h1>
@@ -23,4 +26,5 @@
                 <img src='doggie.jpg'>
             </div>
         </body>
+        
     </html>

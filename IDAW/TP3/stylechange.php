@@ -34,6 +34,9 @@
                 <li><a href='chien.php'>Un Chien</a></li>
             <ul>
         </nav>
+        <form id="logout" action="disconnected.php" method="POST">
+            <input type="submit" value="Déconnexion"/>
+        </form>
         <body class='container'>
             <div class='head'>
                 <h1>Bienvenue <?php echo $login?> !</h1>
@@ -47,4 +50,5 @@
                 </form>
             </div>
         </body>
+        
     </html>
