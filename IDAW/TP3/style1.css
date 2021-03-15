@@ -1,0 +1,20 @@
+h1{
+    color:thistle;
+}
+
+body{
+    background-color:plum;
+    text-align: center;
+}
+
+.container{
+    padding:20px;
+}
+
+.head{
+    background-color: steelblue;
+}
+
+.menu{
+    background-color:palegreen;
+}

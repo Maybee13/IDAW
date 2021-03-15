@@ -1,0 +1,20 @@
+h1{
+    color:powderblue;
+}
+
+body{
+    background-color:royalblue;
+    text-align:center;
+}
+
+.container{
+    padding:20px;
+}
+
+.head{
+    background-color:sandybrown;
+}
+
+.menu{
+    background-color:palegreen;
+}
