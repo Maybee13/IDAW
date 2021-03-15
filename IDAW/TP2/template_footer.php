@@ -1,6 +1,6 @@
 </body>
 <footer>
-    <div class="container">
+    <div class="footer text-center">
         <div class="row">
             <p>TP2 IDAW 2020-2021</p>
         </div>

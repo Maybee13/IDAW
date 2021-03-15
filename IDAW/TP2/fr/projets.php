@@ -1,17 +1,11 @@
 <?php
     require_once('template_header.php');
 ?>
-    <div class="title">
-        <h1>MAYA DIDON</h1>
-    </div>
-    <div class="main-flex-container">
-        <?php
-            require_once('template_menu.php');
-            renderMenuToHTML('projets');
-        ?>
         <section>
             <div class="container subtitle">
+            <a href="index.php?page=projets&lang=en">Anglais</a>
                 <h2>Stage - Air Liquide (Juin - Août 2020)</h2>
+                
             </div>
             <p>Usine de liquéfaction d'hydrogène Air Liquide (Waziers, France)</p>
             <ul>
@@ -29,7 +23,6 @@
                 <li>Présentations des filières de l'ingénierie auprès de lycéens et collégiens</li>
             </ul>
         </section>
-    </div>
 <?php
     require_once('template_footer.php');
 ?>

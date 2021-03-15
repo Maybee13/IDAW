@@ -1,22 +1,39 @@
 <?php
     require_once('template_header.php');
+    require_once('template_menu.php');
+
+    $currentPageId='accueil';
+    if(isset($_GET['page'])){
+        $currentPageId=$_GET['page'];
+    }
+
+    $lang='fr';
+    if(isset($_GET['lang'])){
+        $lang = $_GET['lang'];
+    }
+
 ?>
     <div class="title">
         <h1>MAYA DIDON</h1>
     </div>
-    <div class="main-flex-container">
+
+<?php
+    renderMenuToHTML($currentPageId);
+?>
+
+    <section class="main-flex-container">
+        <div id="content-wrap">
         <?php
-            require_once('template_menu.php');
-            renderMenuToHTML('index');
+            $pageToInclude=$lang."/".$currentPageId.".php";
+            if(is_readable($pageToInclude)){
+                require_once($pageToInclude);
+            }
+            else{
+                require_once("error.php");
+            }
         ?>
-        <div class="container">
-            <h3>Bienvenue sur mon Site Professionnel !</h3>
-            <h5>Profil :</h5>
-            <p>
-            Etudiante M1 en ingénierie à IMT Lille-Douai (ex Mines de Douai) à la recherche d'un stage assistant ingénieur de 16 à 20 semaines en programmation ou développement web.
-            </p>
         </div>
-    </div>
+    </section>
 <?php
     require_once('template_footer.php');
 ?>

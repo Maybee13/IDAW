@@ -1,17 +1,11 @@
 <?php
     require_once('template_header.php');
 ?>
-    <div class="title">
-        <h1>MAYA DIDON</h1>
-    </div>
-    <div class="main-flex-container">
-        <?php
-            require_once('template_menu.php');
-            renderMenuToHTML('cv');
-        ?>
         <section>
             <div class="container subtitle">
+            <a href="index.php?page=cv&lang=en">Anglais</a>
                 <h2>Formation</h2>
+                
             </div>
             <p>
                 <h4>Etudiante en Ingénierie (depuis 2019)</h4>
