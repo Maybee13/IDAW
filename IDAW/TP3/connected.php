@@ -4,15 +4,17 @@
         'yoda'=>'maitrejedi');
 
     $login="anonymous";
+    $password="anonymous";
     $errorText="";
     $successfullyLogged=false;
 
-    if(isset($_GET['login'])&&isset($_GET['password'])){
-        $tryLogin=$_GET['login'];
-        $tryPwd=$_GET['password'];
+    if(isset($_POST['login'])&&isset($_POST['password'])){
+        $tryLogin=$_POST['login'];
+        $tryPwd=$_POST['password'];
         if(array_key_exists($tryLogin,$users)&&$users[$tryLogin]==$tryPwd){
             $successfullyLogged=true;
             $login=$tryLogin;
+            $password=$tryPwd;
         }
         else{
             $errorText="Erreur de login/password";
@@ -27,5 +29,6 @@
     }
     else{
         echo "<h1>Bienvenu ".$login."</h1>";
+        echo "password = $password";
     }
     ?>
