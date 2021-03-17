@@ -1,20 +1,24 @@
-h1{
-    color:thistle;
+body{
+    background-color: #75dff2;
+    text-align: center;
+    align-items: center;
+    color: #38240f;
 }
 
-body{
-    background-color:plum;
-    text-align: center;
+form{
+    margin: 0 auto;
+    padding: 10px;
+    text-align: justify;
 }
 
 .container{
-    padding:20px;
+    display:flex;
 }
 
-.head{
-    background-color: steelblue;
+img{
+    width: 300px;
+    padding: 50px;
 }
-
 
 ul {
     list-style-type: none;
