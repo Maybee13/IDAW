@@ -1,21 +1,18 @@
 <?php
     session_start();
 
-    $style='';
-    if(isset($_GET['css'])){
-        setcookie('style',$_GET['css']);
-    }
-    else{
-        setcookie('style', 'style1');
-    }
+    $style='style1';
 
     if(isset($_COOKIE['style'])){
         $style=$_COOKIE['style'];
     }
-    else{
-        $style='style1';
+
+    if(isset($_GET['css'])){
+        $style=$_GET['css'];
+        setcookie('style',$style, time()+3600);
     }
 
+    
     $login=$_SESSION['login'];
 
 ?>
