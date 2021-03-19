@@ -1,7 +1,7 @@
 <?php
-    $users=array(
-        'riri'=>'fifi',
-        'yoda'=>'maitrejedi');
+    $conn= mysqli_connect("localhost", "root", "", "testIDAW");
+    $sql="SELECT * FROM testtp3";
+    $result=$conn->query($sql);
 
     $login="anonymous";
     $password="anonymous";
@@ -11,12 +11,21 @@
     if(isset($_POST['login'])&&isset($_POST['password'])){
         $tryLogin=$_POST['login'];
         $tryPwd=$_POST['password'];
-        if(array_key_exists($tryLogin,$users)&&$users[$tryLogin]==$tryPwd){
-            $successfullyLogged=true;
-            $login=$tryLogin;
-            $password=$tryPwd;
+        $existe=false;
+        while ($data=mysqli_fetch_array($result)){
+            if($data['login']==$tryLogin){
+                $existe=true;
+                if($data['password']==$tryPwd){
+                    $successfullyLogged=true;
+                    $login=$tryLogin;
+                    $password=$tryPwd;
+                }
+                else{
+                    $existe=false;
+                }
+            }
         }
-        else{
+        if(!$existe){
             $errorText="Erreur de login/password";
         }
     }
@@ -42,7 +51,7 @@
             <title>TP3</title>
         </head>
         <body>
-        <h1>Bienvenu $login</h1>
+        <h1>Bienvenue $login</h1>
         <nav>
         <ul>
             <li><a href='stylechange.php'>Changer Style</a></li>
