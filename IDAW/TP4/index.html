@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='crud.css' type='text/css' media='screen' title='default' charset='utf-8' />
+    <script src="jquery-1.11.0.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <title>CRUD</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Utilisateurs</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <table id="utilisateurs" class="table table-bordered table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Modifier</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date de naissance</th>
+                            <th>Remarques</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> 
+                        Ajouter Utilisateur
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="nom"> Nom </label>
+                            <input type="text" class="form-control" value="Skywalker" id="nom" />
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom"> Prénom </label>
+                            <input type="text" class="form-control" value="Luc" id="prenom" />
+                        </div>
+                        <div class="form-group">
+                            <label for="introdate"> Date de Naissance </label>
+                            <input type="date" class="form-control" value="03/01/1999" id="datenaiss" />
+                        </div>
+                        <div class="form-group">
+                            <label for="remarques"> Remarques </label>
+                            <input type="text" class="form-control" value="pas ton père" id="remarque" />
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button type="button" id="updateButton" class="btn btn-primary" onclick="update();"> Ajouter </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var next = 1;
+        var active = 0;
+        
+        function display(ctl) {
+            var row = $(ctl).parents("tr");
+            var cols = row.children("td");
+            active = $($(cols[0]).children("button")[0]).data("id");
+            $("#nom").val($(cols[1]).text());
+            $("#prenom").val($(cols[2]).text());
+            $("#datenaiss").val($(cols[3]).text());
+            $("remarque").val($(cols[4]).text());
+            $("#updateButton").text("Modifier");
+        }
+    
+        function update() {
+            if ($("#updateButton").text() == "Modifier") {
+                updateTable(active);
+            }
+            else {
+                ajoutTable();
+            }
+            formVide();
+            $("#nom").focus();
+        }
+
+        function ajoutTable() {
+            if ($("#utilisateurs tbody").length == 0) {
+                $("#utilisateurs").append("<tbody></tbody>");
+            }
+            $("#utilisateurs tbody").append(utilBuildTableRow(next));
+            next += 1;
+        }
+
+        function updateTable(id) {
+            var row = $("#utilisateurs button[data-id='" + id + "']").parents("tr")[0];
+            $(row).after(BuildTableRow(id));
+            $(row).remove();
+            formVide();
+            $("#updateButton").text("Ajouter");
+        }
+    
+        function utilBuildTableRow(id) {
+          var ret =
+          "<tr>" +
+            "<td>" +
+              "<button type='button' " +
+                      "onclick='display(this);' " +
+                      "class='btn btn-default' " +
+                      "data-id='" + id + "'>" +
+                      "<span class='glyphicon glyphicon-edit' />" +
+              "</button>" +
+            "</td>" +
+            "<td>" + $("#nom").val() + "</td>" +
+            "<td>" + $("#prenom").val() + "</td>" +
+            "<td>" + $("#datenaiss").val() + "</td>" +
+            "<td>" + $("#remarque").val() + "</td>" +
+            "<td>" +
+              "<button type='button' " +
+                      "onclick='utilDelete(this);' " +
+                      "class='btn btn-default' " +
+                      "data-id='" + id + "'>" +
+                      "<span class='glyphicon glyphicon-remove' />" +
+              "</button>" +
+            "</td>" +
+          "</tr>"
+    
+          return ret;
+        }
+
+        function utilDelete(ctl) {
+          $(ctl).parents("tr").remove();
+        }
+    
+        function formVide() {
+          $("#nom").val("");
+          $("#prenom").val("");
+          $("#datenaiss").val("");
+          $("remarque").val("");
+        }
+      </script>
+    </body>
+  
+</html>
