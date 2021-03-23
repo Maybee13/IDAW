@@ -8,3 +8,10 @@ Version: 0.1
 Author URI: http://localhost/wordpress/
 */
 
+add_action('wp_footer', 'say_hello');
+
+function say_hello(){
+    echo 'bonjour!';
+}
+
+?>
