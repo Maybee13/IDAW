@@ -40,33 +40,31 @@
                         Ajouter Utilisateur
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <label for="nom"> Nom </label>
-                            <input type="text" class="form-control" value="Skywalker" id="nom" />
-                        </div>
-                        <div class="form-group">
-                            <label for="prenom"> Prénom </label>
-                            <input type="text" class="form-control" value="Luc" id="prenom" />
-                        </div>
-                        <div class="form-group">
-                            <label for="datenaiss"> Date de Naissance </label>
-                            <input type="date" class="form-control" value="03/01/1999" id="datenaiss" />
-                        </div>
-                        <div class="form-group">
-                            <label for="aimecours"> Aime le cours </label>
-                            <input type="checkbox" value="false" id="aimecours"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="remarques"> Remarques </label>
-                            <input type="text" class="form-control" value="pas ton père" id="remarque" />
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button type="button" id="updateButton" class="btn btn-primary" onclick="update();"> Ajouter </button>
+                        <form method="POST" action="" id="form">
+                            <div class="form-group">
+                                <label for="nom"> Nom </label>
+                                <input type="text" class="form-control" value="Skywalker" id="nom" />
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="prenom"> Prénom </label>
+                                <input type="text" class="form-control" value="Luc" id="prenom" />
+                            </div>
+                            <div class="form-group">
+                                <label for="datenaiss"> Date de Naissance </label>
+                                <input type="date" class="form-control" value="03/01/1999" id="datenaiss" />
+                            </div>
+                            <div class="form-group">
+                                <label for="aimecours"> Aime le cours </label>
+                                <input type="checkbox" value="false" id="aimecours"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="remarques"> Remarques </label>
+                                <input type="text" class="form-control" value="pas ton père" id="remarque" />
+                            </div>
+                            <div class="col-xs-12">
+                                <input type="submit" id="updateButton" class="btn btn-primary" onclick="update1();" value="Ajouter">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -90,6 +88,20 @@
             $("#aimecours").val($(cols[4]).text());
             $("#remarque").val($(cols[5]).text());
             $("#updateButton").text("Modifier");
+        }
+
+        function update1(){
+            $(document).ready(function(){
+                $("form").submit(function(event){
+                    if($("#nom").val().length === 0){
+                        $("#nom").after("<span>Merci de remplir ce champ</span>");
+                        event.preventDefault();
+                    }else{
+                        let chaine = $("form").serialize();
+                        update();
+                    }
+                });
+            });
         }
     
         function update() {
