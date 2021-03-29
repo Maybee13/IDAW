@@ -40,7 +40,7 @@
                         Ajouter Utilisateur
                     </div>
                     <div class="panel-body">
-                        <form method="POST" action="" id="form">
+                        <form id="formutil" onsubmit="event.preventDefault();utilBuildTableRow();" autocomplete="off">
                             <div class="form-group">
                                 <label for="nom"> Nom </label>
                                 <input type="text" class="form-control" value="Skywalker" id="nom" />
@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="datenaiss"> Date de Naissance </label>
-                                <input type="date" class="form-control" value="03/01/1999" id="datenaiss" />
+                                <input type="date" class="form-control" value="1999-01-03" id="datenaiss" />
                             </div>
                             <div class="form-group">
                                 <label for="aimecours"> Aime le cours </label>
@@ -62,7 +62,7 @@
                                 <input type="text" class="form-control" value="pas ton père" id="remarque" />
                             </div>
                             <div class="col-xs-12">
-                                <input type="submit" id="updateButton" class="btn btn-primary" onclick="update1();" value="Ajouter">
+                                <input type="submit" id="updateButton" class="btn btn-primary" onclick="update();" value="Ajouter">
                             </div>
                         </form>
                     </div>
@@ -73,6 +73,7 @@
     <script>
         var next = 1;
         var active = 0;
+        var crud;
         $('#aimecours').change(function(){
             cb = $(this);
             cb.val(cb.prop('checked'));
@@ -89,29 +90,16 @@
             $("#remarque").val($(cols[5]).text());
             $("#updateButton").text("Modifier");
         }
-
-        function update1(){
-            $(document).ready(function(){
-                $("form").submit(function(event){
-                    if($("#nom").val().length === 0){
-                        $("#nom").after("<span>Merci de remplir ce champ</span>");
-                        event.preventDefault();
-                    }else{
-                        let chaine = $("form").serialize();
-                        update();
-                    }
-                });
-            });
-        }
     
         function update() {
             if ($("#updateButton").text() == "Modifier") {
+                crud = "modif";
                 updateTable(active);
             }
             else {
+                crud ="ajout";
                 ajoutTable();
             }
-            formVide();
             $("#nom").focus();
         }
 
@@ -127,7 +115,6 @@
             var row = $("#utilisateurs button[data-id='" + id + "']").parents("tr")[0];
             $(row).after(utilBuildTableRow(id));
             $(row).remove();
-            formVide();
             $("#updateButton").text("Ajouter");
         }
     
@@ -161,15 +148,20 @@
         }
 
         function utilDelete(ctl) {
-          $(ctl).parents("tr").remove();
+            crud="suppr";
+            $(ctl).parents("tr").remove();
         }
-    
-        function formVide() {
-          $("#nom").val("");
-          $("#prenom").val("");
-          $("#datenaiss").val("");
-          $("remarque").val("");
-        }
+
+        let backendurl = "http://localhost/IDAW/TP4/"
+
+        $("#formutil").submit(function(){   
+            $.ajax({
+                url : backendurl + 'addUser.php',
+                type : 'POST',
+                data : 'prenom='+ document.getElementById('prenom').value +'&nom='+ document.getElementById('nom').value +'&datenaiss='+  document.getElementById('datenaiss').value + '&remarque='+ document.getElementById('remarque').value + '&crud='+ crud,
+                dataType : 'application/json'
+            });
+        });
       </script>
     </body>
   
