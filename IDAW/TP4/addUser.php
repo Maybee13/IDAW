@@ -22,9 +22,6 @@
     if($_POST['crud']=='modif'){
         $sql = "UPDATE utilisateurstp4 SET nom='${nom}',prenom='${prenom}',date_de_naissance='${datenaiss}',remarques='${remarque}' WHERE nom='${nom}'";
     }
-    if($_POST['crud']=='suppr'){
-        $sql = "DELETE FROM utilisateurstp4 WHERE nom='${nom}'";
-    }
     if(mysqli_query($conn, $sql)){
         echo "Records added successfully.";
     } else{
